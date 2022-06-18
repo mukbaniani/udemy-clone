@@ -43,6 +43,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50, verbose_name=_('გვარი'))
     email = models.EmailField(unique=True, verbose_name=_('მეილი'))
     image = models.ImageField(upload_to='images', blank=True, null=True, default='default.jpg')
+    is_teacher = models.BooleanField(default=False, verbose_name=_('ინსტრუქტორი'))
 
     objects = UserManager()
     USERNAME_FIELD = 'email'

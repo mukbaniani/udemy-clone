@@ -7,7 +7,7 @@ class Category(models.Model):
     subcategory = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name=_('ქვე კატეგორია'), blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return f'{self.title} -> {self.subcategory.name}'
 
     class Meta:
         verbose_name = _('კატეგორია')
