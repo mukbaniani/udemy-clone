@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 User = get_user_model()
 
 def validate_linkedin_address(value):
-    rule = '^https:\\/\\/[a-z]{2,3}\\.linkedin\\.com\\/.*$'
+    rule = 'http(s)?:\/\/([\w]+\.)?linkedin\.com\/in\/[A-z0-9_-]+\/?'
     if not re.search(rule, value):
         raise ValidationError("შეიყვანეთ სწორი ლინკინის მისამართი")
 
