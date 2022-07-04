@@ -20,3 +20,6 @@ class Teacher(models.Model):
 
     class Meta:
         verbose_name = _('ინსტრუქტორი')
+
+    def __str__(self):
+        return f'{self.user.first_name}'

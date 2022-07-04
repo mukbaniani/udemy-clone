@@ -18,3 +18,14 @@ class CourseAddView(viewsets.ModelViewSet):
 class CreateRateView(viewsets.ModelViewSet):
     queryset = models.Rates.objects.all()
     serializer_class = serializer.RateSerializer
+
+
+class AddSection(viewsets.ModelViewSet):
+    queryset = models.Section.objects.all()
+    serializer_class = serializer.SectionSerializer
+
+
+class AddLanguage(viewsets.ModelViewSet):
+    queryset = models.Language.objects.all()
+    serializer_class = serializer.LanguageSerializer
+    permission_classes = (permissions.IsAdminUser,)

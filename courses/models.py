@@ -6,6 +6,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class Language(models.Model):
+    name = models.CharField(max_length=150, verbose_name=_('ენა'))
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     title = models.CharField(max_length=80, verbose_name=_('სათაური'))
     subcategory = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name=_('ქვე კატეგორია'), blank=True, null=True)
@@ -21,9 +28,8 @@ class Course(models.Model):
     title = models.CharField(max_length=255, verbose_name=_('სათაური'))
     about_course = models.TextField(verbose_name=_('კურსის შესახებ'))
     created_by = models.ManyToManyField(Teacher, verbose_name=_('ინსტრუქტორი'))
-    language = models.CharField(max_length=90, verbose_name=_('ენა'))
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, verbose_name=_('კურსი'), blank=True, null=True)
     requirement = models.TextField(verbose_name=_('მოთხოვნები'))
-    buyer = models.ManyToManyField(User, verbose_name=_('მყიდველი'))
 
     def __str__(self):
         return f"{self.title}"
@@ -44,3 +50,11 @@ class Rates(models.Model):
 
     class Meta:
         verbose_name = _("შეფასება")
+
+
+class Section(models.Model):
+    name = models.CharField(max_length=150, verbose_name=_('სახელი'))
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name=_('კურსი'))
+
+    def __str__(self):
+        return self.name
